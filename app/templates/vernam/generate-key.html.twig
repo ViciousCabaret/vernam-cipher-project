@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello VernamController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <form method="POST" action="">
+        <div class="form-group">
+            <label for="keyLength">Ilość znaków z jakiego ma składać się klucz</label>
+            <input type="number" class="form-control" id="keyLength" name="keyLength" placeholder="Długośc klucza">
+        </div>
+{#        <div class="form-group">#}
+{#            <label for="keyCharacters">Z jakich znaków wygenerować klucz (polskie znaki wykluczone)</label>#}
+{#            <input type="text" class="form-control" id="keyCharacters" name="keyCharacters" placeholder="Znaki klucza">#}
+{#            <small id="emailHelp" class="form-text text-muted">Nie wymagane, domyslnie generuje ze wszystkich znakow (z wylaczeniem polskich)</small>#}
+{#        </div>#}
+        <button type="submit" class="btn btn-primary">Generuj</button>
+    </form>
+
+    {% if key is defined %}
+        <div style="color: red; font-size: 20px">Wygenerowany klucz: <span style="color: green; font-size: 15px; font-style: italic">{{ key }}</span></div>
+    {% endif %}
+</div>
+
+{% endblock %}

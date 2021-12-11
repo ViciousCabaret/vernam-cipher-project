@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <form method="POST" action="#">
+        <div class="form-group">
+            {% if intent == 'encrypt' %}
+                <label for="message">Wiadomość do zaszyfrowania:</label>
+            {% else %}
+                <label for="message">Wiadomość do odszyfrowania:</label>
+            {% endif %}
+            <input type="text" class="form-control" id="message" name="message" placeholder="wiadomość">
+            <small id="emailHelp" class="form-text text-muted">Polskie znaki wyłączone</small>
+        </div>
+        <div class="form-group">
+        <div class="form-group">
+            <label for="keyCharacters">Klucz szyfrujący</label>
+            <input type="text" class="form-control" id="key" name="key" placeholder="wprowadz klucz">
+            <small id="emailHelp" class="form-text text-muted">Polskie znaki wyłączone</small><br>
+            {% if intent == 'encrypt' %}
+                <small id="emailHelp" class="form-text text-muted">W przypadku nie podania klucza, zostanie on wygenerowany automatycznie</small>
+            {% endif %}
+        </div>
+        {% if intent == 'encrypt' %}
+            <button type="submit" class="btn btn-primary">Szyfruj</button>
+        {% else %}
+            <button type="submit" class="btn btn-primary">Odszyfruj</button>
+        {% endif %}
+
+        {% if result is defined and key is defined %}
+            <form>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Wiadomość: </label>
+                    <div class="col-sm-10">
+                        <span>{{ result }}</span>
+{#                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{ result }}>#}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail2" class="col-sm-2 col-form-label">Klucz: </label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value={{ key }}>
+                    </div>
+                </div>
+            </form>
+        {% endif %}
+
+    </form>
+    {% if error_message is defined %}
+        <h3 style="color: darkred">ERROR: {{ error_message }}</h3>
+    {% endif %}
+
+{#    {% if key is defined %}#}
+{#        <div style="color: red; font-size: 20px">Wygenerowany klucz: <span style="color: green; font-size: 15px; font-style: italic">{{ key }}</span></div>#}
+{#    {% endif %}#}
+</div>
+
+{% endblock %}
