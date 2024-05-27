@@ -20,3 +20,8 @@ po zakonczeniu komenda:
 
 
 projekt jest wystawiony na: localhost:8080
+
+
+---
+
+PROJEKT ZALICZENIOWY WYKONANY NA POTRZEBY ZAJĘĆ WSB MERITO POZNAŃ 
